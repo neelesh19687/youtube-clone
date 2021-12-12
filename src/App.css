@@ -1,0 +1,64 @@
+.page{
+  display: flex;
+  flex-direction: row;
+}
+.sidemenu{
+  width: 20vw;
+ position: sticky;
+ margin-top: 3rem;
+}
+.videogrid{
+  margin-left: 1rem;
+  margin-top: 3.7rem;
+  width: 80vw;
+  
+}
+.videogridSub{
+  margin-left: 1rem;
+  margin-top: 3.7rem;
+  width: 80vw;
+  
+}
+.desccomm{
+  flex: 0.65;
+  margin-left: 1rem;
+}
+.recommended{
+  flex: 0.35;
+}
+.other{
+  width: 100%;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: row;
+}
+.channelpage{
+ flex: 0.8;
+  margin-top: 3rem;
+  width: 80vw;
+  
+  height: 100vh;
+  
+  
+  
+}
+.sidemenu_channel{
+  flex: 0.2;
+  position: sticky;
+  margin-top: 3rem;
+
+}
+.channel{
+  display: flex;
+ 
+}
+.coverVide{
+  margin-top: 2rem;
+  margin-left: 1rem;
+}
+.searchPage{
+  margin-top: 3rem;
+  margin-left: 20vw;
+}
+
+

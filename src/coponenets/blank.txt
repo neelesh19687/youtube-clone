@@ -1,0 +1,32 @@
+ <form action="" style={{marginTop:'4rem'}} >
+        <input type='file' onChange={(e)=>{setFile(e.target.files[0])}}></input>
+        <button className="btn-primary" onClick ={(e)=>{upload(e)}} type="submit" >upload</button>
+        </form>
+
+
+        To upload
+
+        const[url,Seturl]=useState('');
+  const [file,setFile] =useState(null);  
+
+  useEffect(()=>{},[])
+  const upload=(e)=>{
+    
+    
+   e.preventDefault();
+    
+    
+    console.log("eventlistenerWorking")
+    uploadBytes(storageRef, file).then((snapshot) => {
+        console.log('Uploaded a blob or file!');
+    });
+    
+    
+}
+const starsRef = ref(storage, 'thumbnails/cheems.jpg');
+
+// Get the download URL
+getDownloadURL(starsRef).then((url) => {
+  Seturl(url)
+})
+console.log(url);    
