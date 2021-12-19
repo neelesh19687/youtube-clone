@@ -3,6 +3,10 @@
 }
 
 .cardmb-3{
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.2rem;
     margin-left: 1rem;
 }
+.SearchVidCarTitle{
+    color: white !important;
+    margin-bottom: 0rem;
+} 

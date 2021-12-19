@@ -23,11 +23,11 @@ export const ChannelBanner = ({img}) => {
          getchannelData();
         },[])
         
-        console.log(channelData.channelName)
+    //     console.log(channelData.channelName)
 
 
 
-    console.log("from channel Banner "+channelId);
+    // console.log("from channel Banner "+channelId);
      //const banner_img = {backgroundImage :img}
     return (
         

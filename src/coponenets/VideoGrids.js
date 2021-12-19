@@ -24,27 +24,15 @@ const vidRef = collection(db,'videos');
 
     return (
         <>
+        
         <h2>{feed}</h2>
         <hr/>
        
         <div className="mainPage">
-          {videos.map((video)=>{return( <VideoCard views ={video.views}channelId={video.channelId} id={video.id} title={video.title} />)})}
+          {videos.map((video)=>{return( <VideoCard thumbnail={video.thumbnailUrl} views ={video.views}channelId={video.channelId} id={video.id} title={video.title} />)})}
            
          
-          <VideoCard/>
-          <VideoCard/>
-          <VideoCard/>
-          <VideoCard/>
-          <VideoCard/>
-          <VideoCard/>
-          <VideoCard/>
-          <VideoCard/>
-          <VideoCard/>
-          <VideoCard/>
-          <VideoCard/>
-          <VideoCard/>
-          <VideoCard/>
-          <VideoCard/>
+         
 
 
         </div>

@@ -6,7 +6,7 @@ import {db} from '../Firebase';
 export const ChannelAboutPage = () => {
 
     const{channelId}:{channelId:string}=useParams();
-    console.log("from channel ChannelAboutPage "+channelId);
+    //console.log("from channel ChannelAboutPage "+channelId);
     const channelRef = doc(db,'channels',channelId);
 
 

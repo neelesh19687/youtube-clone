@@ -3,13 +3,14 @@ import React, { useEffect, useState } from 'react'
 import brandImg from '../images/account.svg'
 import logo from '../images/logoyt.png'
 import './ComponentCss/SignUp.css';
-import { db,auth } from '../Firebase';
+import { db,auth,storage } from '../Firebase';
 import{collection,setDoc,addDoc,doc} from 'firebase/firestore'
 import { createUserWithEmailAndPassword,onAuthStateChanged,signOut } from 'firebase/auth';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
+import { ref, uploadBytesResumable,getDownloadURL } from '@firebase/storage';
 export const SignUp = () => {
-
+    const[userPicUrl,SetuserPicUrl]=useState('');
     const[userPic,SetuserPic]=useState(null);
     const[userName,SetUserName]=useState('');
     const[regEmail,SetregEmail]=useState('');
@@ -24,16 +25,36 @@ export const SignUp = () => {
         }
     
     })*/
+    useEffect(()=>{
+        if(userPicUrl!==''){
+            
+            handleSignUp();
+        }
 
+    },[userPicUrl]);
+
+
+const uploadProfilePic=async(e)=>{
+    e.preventDefault();
+    const profilePicRef=ref(storage,`profilePics/${userPic.name}`);
+    const uploadtaskUserPic = uploadBytesResumable(profilePicRef,userPic);
+    uploadtaskUserPic.on('state_changed',(snapshot)=>{console.log('uploading profile pic')},
+    (error)=>{ alert(error.message)},()=>{
+        getDownloadURL(uploadtaskUserPic.snapshot.ref).then((url) => {
+            SetuserPicUrl(url);
+            console.log('ProfilePicurl :', url);
+    }
+    )})
+}
     const uploadDataTodb= async (uid)=>{
         if(uid!=null){
 
             await setDoc(doc(db, "channels", uid), {
                 channelName: userName,
                 bannerPic:'',
-                profilePic:'',
+                profilePic:userPicUrl,
                 subscriberCount:0,
-                channelId:'',
+                channelId:uid,
                 userEmail:regEmail
                 
               });
@@ -46,10 +67,7 @@ export const SignUp = () => {
     }
 
 
-    const logout=()=>{
-        signOut(auth);
-       
-    }
+   
     const ContinueToYt=()=>{
       if(isSignedUp){
           return(
@@ -67,10 +85,10 @@ export const SignUp = () => {
     }
 
 
-    const handleSignUp=async (e)=>{
+    const handleSignUp=async ()=>{
         try{
             
-            e.preventDefault();
+            
             if(regpass===reRegPass){
 
                 const user=   await createUserWithEmailAndPassword(auth,regEmail,regpass);
@@ -117,8 +135,8 @@ export const SignUp = () => {
                         <input autoComplete={true} onChange={(e)=>SetregEmail(e.target.value)} className='inputSignUpdetailForm' placeholder="Enter Your Email.." type="email" />
                         <input onChange={(e)=>SetRegPass(e.target.value)} className='inputSignUpdetailForm' placeholder="Enter Password" type="password" />
                         <input onChange={(e)=>SetReRegPass(e.target.value)} className='inputSignUpdetailForm' placeholder="confirm Password " type="password"/>
-                        <input className='custom-file-input' type="file" name="" />
-                        <button onClick={(e)=>{handleSignUp(e)}}  className="btn-primary inputSignUpdetailFormBtnSubmit" >SignUp</button>
+                        <input onChange={(e)=>{SetuserPic(e.target.files[0])}} className='custom-file-input' type="file" name="" />
+                        <button onClick={(e)=>{uploadProfilePic(e)}}  className="btn-primary inputSignUpdetailFormBtnSubmit" >SignUp</button>
                     </form>
 
                     {/**  */}    

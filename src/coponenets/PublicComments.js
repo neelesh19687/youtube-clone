@@ -2,8 +2,8 @@ import React from 'react';
 import { Avatar2 } from './Avatar2';
 import "./ComponentCss/publicComments.css"
 
-export const PublicComments = ({image,username}) => {
-    let comment="hue hue hue mast video op domst kya haal badhiya sab";
+export const PublicComments = ({image,username,comment}) => {
+   // let comment="hue hue hue mast video op domst kya haal badhiya sab";
     let time = new Date();
 
     return (

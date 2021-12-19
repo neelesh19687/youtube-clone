@@ -24,10 +24,24 @@ import { SearchResultVid } from './coponenets/SearchResultVid';
 import {ChannelPageVid} from './coponenets/ChannelPageVid';
 import {ChannelAboutPage} from './coponenets/ChannelAboutPage';
 import {SignUp} from './coponenets/SignUp';
-import {SignIn} from './coponenets/SignIn'
+import {SignIn} from './coponenets/SignIn';
+import { VideoUpload } from './coponenets/VideoUpload';
+import { useState } from 'react';
+import { onAuthStateChanged } from '@firebase/auth';
+import { auth } from './Firebase';
+import { Subfeed } from './coponenets/Subfeed';
 //import { useEffect, useState } from 'react';
 
 function App() {
+  const[userId,SetUserId]=useState('');
+  onAuthStateChanged(auth,(user)=>{
+    if(user){
+      SetUserId(user.uid)
+    }
+    else{
+      SetUserId('')
+    }
+  })
   
 
   return (
@@ -56,13 +70,13 @@ function App() {
 
             <div className="mainvideo">
 
-              <VideoPlayer />
+              <VideoPlayer  />
             </div>
             <div className="other">
               <div className="desccomm">
-                <Description />
+                <Description userId={userId} />
                 <strong> <h4>Comments</h4></strong>
-                <Comments className="avatar2" image={logo} username="USERNAME" />
+                <Comments className="avatar2"  />
 
               </div>
               <div className="recommended">
@@ -77,11 +91,16 @@ function App() {
 
 
           </Route>
+          {/*Sign In Page */}
           <Route path ='/signin'>
             <SignIn/>
           </Route>
 
+        {/*Video Upload Page */}
 
+        <Route path='/videoUpload/:channelId'>
+        <VideoUpload/>
+        </Route>
 
 
 
@@ -170,7 +189,7 @@ function App() {
 
               <div className="videogrid">
              
-                <VideoGrids feed ={"Subscription"}/>
+               <Subfeed feed ={'Subscription'}/>
               </div>
             </div>
 

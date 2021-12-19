@@ -20,7 +20,7 @@ export const ChannelNav = ({ username }) => {
     
     const [clicked,Setclicked]=useState(0);
     const{channelId}:{channelId:string}=useParams();
-    console.log("from channel Nav "+channelId);
+   // console.log("from channel Nav "+channelId);
     
     const channelRef = doc(db,'channels',channelId);
     
@@ -73,7 +73,7 @@ export const ChannelNav = ({ username }) => {
     const funcSubscribe = () => {
         if (isSubscribed) {
             SetisSubscribed(false)
-            console.log("Unsubscribed")
+          //  console.log("Unsubscribed")
             Setsubscribe("Subscribe ");
             Setbgcolorsubscription({
                 backgroundColor: "#cc0000",
@@ -84,7 +84,7 @@ export const ChannelNav = ({ username }) => {
         }
         else {
             SetisSubscribed(true)
-            console.log("subscribed");
+           // console.log("subscribed");
             Setsubscribe("Subscribed");
             Setbgcolorsubscription({ backgroundColor: "rgb(48,48,48", color: "#adadad" })
         }

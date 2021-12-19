@@ -1,0 +1,29 @@
+.subscribedChannels{
+    display: flex;
+    overflow-x: scroll;
+    flex-direction: row;
+    -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;
+  border-bottom: solid white 2px; 
+  border-top: solid white 2px; 
+  background-color: #9091cd63;
+}
+.subscribedChannels::-webkit-scrollbar{
+    display: none;
+}
+
+.individualSubscribedChannelCArd{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #353535;
+    padding: 0.2rem;
+    margin-bottom: 10px;
+    border: 2px solid white;
+    border-radius: 14px;
+    cursor: pointer; 
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 10px;
+}

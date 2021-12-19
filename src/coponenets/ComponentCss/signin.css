@@ -13,6 +13,13 @@ flex-direction: column;
 margin-right: 3rem;
 
 }
+.continueToYtSingIn{
+    box-shadow: none;
+    margin-left: 5.5rem;
+    display: flex;
+    padding: 2%;
+    border-radius: 13px;
+}
 
 .custom-file-input {
   color: transparent;
@@ -49,9 +56,10 @@ margin-right: 3rem;
 
 
 
-.signUpdetailForm{
+.signIndetailForm{
     display: flex;
     flex-direction: column;
+    margin-top: 4rem;
 }
 .SingUpFormContainer{
     background-color: rgba(59, 59, 59,0.5);

@@ -7,7 +7,7 @@ import video from "../videos/Myvideo.mp4"
 import "./ComponentCss/videoplayer.css";
 //import { Playpause } from './Playpause';
 import { useParams } from 'react-router';
-import { doc,getDoc,collection  } from '@firebase/firestore';
+import { doc,getDoc,collection,updateDoc  } from '@firebase/firestore';
 import {db} from '../Firebase';
 export const VideoPlayer = () => {
     let progress=0;
@@ -17,16 +17,18 @@ export const VideoPlayer = () => {
     const {videoId}:{videoId:string} =useParams();
     const videoRef = doc(db,'videos',videoId);
     const [videoData,SetVideoData]=useState({});
+    const[views,SetViews]=useState(0)
     useEffect(()=>{
         const getVideos= async()=>{
-         const tempvid= await getDoc(videoRef);
+         const tempvid= await getDoc(videoRef).then((vid)=>{updateDoc(doc(db,'videos',videoId),{views:vid.data().views+1});
+        SetVideoData(vid.data())});
         
-         
-         SetVideoData(tempvid.data());
+         console.log('plpl')
+       //  SetVideoData(tempvid.data());
           
          }
          
-         getVideos();
+         getVideos()
         },[])
         
         console.log(videoData.title)

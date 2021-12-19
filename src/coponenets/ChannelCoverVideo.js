@@ -22,7 +22,7 @@ export const ChannelCoverVideo = ({vid}) => {
        getchannelData();
       },[])
       
-      console.log(channelData.channelName,'  from cover Video');
+     // console.log(channelData.channelName,'  from cover Video');
 
 
 

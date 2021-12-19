@@ -60,5 +60,8 @@
   margin-top: 3rem;
   margin-left: 20vw;
 }
-
+a{
+  text-decoration: none !important;
+  color: white !important;
+}
 

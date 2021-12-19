@@ -7,8 +7,26 @@
 }
 .vidCardChannelTitle{
     margin: 0 !important;
-    padding-left: 1rem;
+    padding-left: 0rem;
+    font-size: medium;
 }
+.vidTitleAndChannelInVideocard{
+    margin-left: 0.5rem;
+}
+.channelNameinVidCard{
+    font-size: small;
+ /*  margin-top: 2px;
+    margin-bottom: 2px;*/
+    margin-bottom: 0rem;
+}
+.ViewsAndTimeStampinVidCard{
+    font-size: x-small;  
+}
+.channelNameinsideVidCard:hover{
+    color: white;
+    font-weight: bold;
+}
+
 .card-text{
     color: #cccccc !important;
 }
@@ -28,12 +46,14 @@
 .vidgridVidCard-title{
     width: 100%;
     display: flex;
-   
+   margin-bottom: -1rem;
     align-items: flex-start;
 }
 .vid-card-title{
-    color: white;
+    color: white !important;
+    text-decoration: none !important;
     transition: 0.214s;
+    font-size: large;
 }
 .vid-card-title:hover{
     color: aliceblue;
@@ -51,11 +71,3 @@
 }
 
 
-.dropdown-menu{
-    background-color: rgb(53, 53, 53) !important;
-    color: white;
-}
-.dropdown-menu a:hover{
-    color: black !important;
-    background-color: white !important;
-}

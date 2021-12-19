@@ -2,18 +2,39 @@ import React,{useState} from 'react'
 import './ComponentCss/signin.css'
 import brandImg from '../images/account.svg'
 import logo from '../images/logoyt.png'
+import { onAuthStateChanged, signInWithEmailAndPassword } from '@firebase/auth'
+import { auth } from '../Firebase';
+import { Link } from 'react-router-dom'
 export const SignIn = () => {
-    const[userPic,SetuserPic]=useState(null);
-    const[userName,SetUserName]=useState('');
+    
     const[regEmail,SetregEmail]=useState('');
     const[regpass,SetRegPass]=useState('');
-    const[reRegPass,SetReRegPass]=useState('');
-
-const handleSignUp=()=>{
-    console.log('signed up')
+    const [isSignedIn,SetisSignedIn]=useState(false)
+    onAuthStateChanged(auth,(user)=>{
+        if(user){
+            SetisSignedIn(true);
+        }
+        else{
+            SetisSignedIn(false);
+        }
+    })
+const handleSignIn=async(e)=>{
+    e.preventDefault();
+    console.log('signed in');
+    signInWithEmailAndPassword(auth,regEmail,regpass).then(alert('Signed In'));
 }
    
-
+const RedirectToyt=()=>{
+    if(isSignedIn){
+        return(<>
+        <button className="btn-primary continueToYtSingIn">Continue To Youtube</button>
+        
+        </>)
+    }
+    else{
+        return(<></>)
+    }
+}
       
     return (
 
@@ -28,17 +49,15 @@ const handleSignUp=()=>{
                         <img style={{ objectFit: 'contain', width: '10rem' }} src={logo} alt="" />
 
 
-                        <h4>Create your Youtube Account</h4>
-                        <p>to continue to YouTube
-                        </p>
+                        <h4>Sign in to your Youtube Account</h4>
+                        
 
-                        <form className="signUpdetailForm">
-                            <input autoComplete={true} onChange={(e) => SetUserName(e.target.value)} className='inputSignUpdetailForm' placeholder="Enter Your Username.." type="text" />
+                        <form className="signIndetailForm">
+                           
                             <input autoComplete={true} onChange={(e) => SetregEmail(e.target.value)} className='inputSignUpdetailForm' placeholder="Enter Your Email.." type="email" />
                             <input onChange={(e) => SetRegPass(e.target.value)} className='inputSignUpdetailForm' placeholder="Enter Password" type="password" />
-                            <input onChange={(e) => SetReRegPass(e.target.value)} className='inputSignUpdetailForm' placeholder="confirm Password " type="password" />
-                            <input className='custom-file-input' type="file" name="" />
-                            <button onClick={(e) => { handleSignUp(e) }} className="btn-primary inputSignUpdetailFormBtnSubmit" >SignUp</button>
+                           
+                            <button onClick={(e) => { handleSignIn(e) }} className="btn-primary inputSignUpdetailFormBtnSubmit" >SignIn</button>
                         </form>
 
                         {/**  */}
@@ -48,7 +67,9 @@ const handleSignUp=()=>{
 
                         <img src={brandImg} alt="" />
                         <h6 style={{ marginLeft: '4rem' }}>Your Data Is Sequere With Us</h6>
-                      
+                        <Link to='/'>
+                        <RedirectToyt/>
+                        </Link>
 
                     </div>
                 </div>

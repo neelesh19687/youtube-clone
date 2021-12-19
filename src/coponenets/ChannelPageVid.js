@@ -4,7 +4,7 @@ import { ChannelVidCard } from './ChannelVidCard';
 
 export const ChannelPageVid = () => {
     const{channelName}:{channelName:string}=useParams();
-    console.log("from channel ChannelPageVid "+channelName);
+    //console.log("from channel ChannelPageVid "+channelName);
 
     return (
         <div>

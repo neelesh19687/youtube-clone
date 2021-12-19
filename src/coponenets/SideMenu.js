@@ -2,35 +2,38 @@ import React, { useState } from 'react'
 import "./ComponentCss/sidemenu.css";
 import { Link } from 'react-router-dom';
 import { auth } from '../Firebase';
-import { signOut } from '@firebase/auth';
+import { onAuthStateChanged, signOut } from '@firebase/auth';
 export const SideMenu = () => {
 const[isSignedOut,setIsSignedOut]=useState(false);
+onAuthStateChanged(auth,(user)=>{
+  if(user){
+    setIsSignedOut(false)
+  }
+  else{
+    setIsSignedOut(true)
+  }
+})
   const logOut=()=>{
     signOut(auth);
-setIsSignedOut(true);
+
 alert("signed Out")
 
   }
-  const Toast=()=>{
-    if(!isSignedOut){
-      return(<></>)
-
-    }
-    else{
+  const SidemenuAccountHandler=()=>{
+    if(isSignedOut){
       return(<>
-      <div className="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
-  <div className="d-flex">
-    <div className="toast-body">
-    Hello, world! This is a toast message.
-   </div>
-    <button type="button" className="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-  </div>
-</div>
+      <Link to="/signup" >  <li style={{color:'white',cursor:'pointer'}}  className="link-dark rounded"  >New...</li></Link>
+      <Link to="/signin" >  <li style={{color:'white',cursor:'pointer'}} className="link-dark rounded" >SignIn</li></Link>
       
       </>)
     }
+    else{
+      return(<>
+       <li className="link-dark rounded" style={{color:'white',cursor:'pointer'}} onClick={logOut}>Sign out</li>
+      </>)
+    }
   }
-
+  
     
     return (
         <div>
@@ -68,16 +71,15 @@ alert("signed Out")
         </button>
         <div className="collapse" id="account-collapse"  >
           <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li className="link-dark rounded" ><Link to="/signup" >New...</Link></li>
-            <li className="link-dark rounded" ><Link to="/signup" >SignIn</Link></li>
+         
+           <SidemenuAccountHandler/>
            
-            <li className="link-dark rounded" style={{color:'white'}} onClick={logOut}>Sign out</li>
           </ul>
         </div>
       </li>
     </ul>
   </div>
-  <Toast/>
+  
         </div>
     )
 }
