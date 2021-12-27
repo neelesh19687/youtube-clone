@@ -10,7 +10,7 @@
 }
 
 .video {
-    width: 70%;
+    width: 63%;
     object-fit: contain;
 }
 
@@ -30,7 +30,16 @@
     transform: translateY(45px);
     transition: 0.3s ease-in;
 }
+@media screen and (max-width: 858px){
+    .video{
+        width: 90%;
+        object-fit: cover;
+    }
+    .vidContainer{
+        height: max-content
+    }
 
+}
 .controls:hover {
     /*background-color: rgba(0,0,0,0.5);*/
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.0));
@@ -49,6 +58,7 @@
     width: 100%;
     height: 10px;
     flex: 0.9;
+    display: block;
 }
 
 .timebar {

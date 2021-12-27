@@ -60,3 +60,17 @@
 .descriptionAndLinks{
     flex: 0.8;
 }
+@media screen and (max-width: 485px){
+    .container{
+        flex-direction: column;
+    }
+    .part2{
+        flex: 1;
+    }
+    .descriptionAndLinks{
+        flex: 1;
+    }
+    .part1{
+        width: 100%;
+    }
+}

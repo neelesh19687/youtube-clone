@@ -2,28 +2,30 @@
     display: flex;
     overflow-x: scroll;
     flex-direction: row;
-    -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;
-  border-bottom: solid white 2px; 
-  border-top: solid white 2px; 
-  background-color: #9091cd63;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    /* border-bottom: solid white 2px; */
+    /* border-top: solid white 2px; */
+    background-color: #9091cd00;
 }
 .subscribedChannels::-webkit-scrollbar{
     display: none;
 }
 
 .individualSubscribedChannelCArd{
+    width: 63px !important;
+    height: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #353535;
-    padding: 0.2rem;
-    margin-bottom: 10px;
-    border: 2px solid white;
+    background-color: #181818;
+    padding: 0;
+    margin-bottom: 0px;
+    border: 2px solid #ffffff00;
     border-radius: 14px;
-    cursor: pointer; 
-    margin-left: 4px;
-    margin-right: 4px;
-    margin-top: 10px;
+    cursor: pointer;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
 }

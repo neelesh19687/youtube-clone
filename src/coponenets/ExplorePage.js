@@ -1,5 +1,5 @@
 import React from 'react'
-import { SeachVidCard } from './SeachVidCard';
+import { ExploreVidCard } from './ExploreVidCard';
 import { useEffect,useState } from 'react';
 import { Link } from 'react-router-dom';
 import { db,auth,storage } from '../Firebase';
@@ -31,13 +31,16 @@ console.log(trendingVideo);
                 <h3>Trending Now  <strong>🔥</strong> </h3>
             </div>
 
-            <hr />
+            <hr style={{width:'75vw'}} />
+            <div className="allExploreVideos" >
+
             {trendingVideo.map((video)=>{
                 return(<>
                 
-                <SeachVidCard views={video.views} description={video.description} channelId={video.channelId} thumbnail={video.thumbnailUrl} title={video.title} id={video.uid}/>
+                <ExploreVidCard views={video.views} description={video.description} channelId={video.channelId} thumbnail={video.thumbnailUrl} title={video.title} id={video.uid}/>
                 </>)
             })}
+            </div>
 
         </div>
     )

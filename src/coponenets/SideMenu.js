@@ -43,7 +43,7 @@ alert("signed Out")
       <li className="mb-1">
         <Link to='/'>
         <button className="btn btn-toggle sidemenu-butt align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
-        <i className="fas fa-home"/> Home 
+        <i className="fas fa-home"/> <span className='sidemenuText'>Home</span>  
         </button>
         </Link>
         
@@ -51,7 +51,7 @@ alert("signed Out")
       <li className="mb-1">
         <Link to="/explorefeed">
         <button className="btn btn-toggle sidemenu-butt align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-        <i className="fas fa-compass"/> Explore
+        <i className="fas fa-compass"/> <span className='sidemenuText'>Explore</span> 
         </button>
         </Link>
        
@@ -59,7 +59,7 @@ alert("signed Out")
       <li className="mb-1">
         <Link to="/subscriptions">
         <button className="btn btn-toggle sidemenu-butt align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-        <i className="fas fa-plus-square"/> Subscription
+        <i className="fas fa-plus-square"/><span className='sidemenuText'> Subscription</span> 
         </button>
         </Link>
         
@@ -67,7 +67,7 @@ alert("signed Out")
       <li className="border-top my-3"></li>
       <li className="mb-1">
         <button className="btn btn-toggle sidemenu-butt align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-        <i className="fas fa-user-alt"/> Account
+        <i className="fas fa-user-alt"/> <span className='sidemenuText'>Account</span>
         </button>
         <div className="collapse" id="account-collapse"  >
           <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">

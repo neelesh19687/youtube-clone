@@ -9,6 +9,13 @@
     z-index: 44;
     align-items: center;
 }
+.logo2{
+    width: 75%;
+    cursor: pointer;
+    object-fit: contain;
+    transition: 0.3s;
+    display: none;
+}
 
 .logo {
     width: 75%;
@@ -49,6 +56,26 @@
     transition: 0.2s ease-in;
   
 }
+@media screen and (max-width: 655px){
+#inputsearch{
+    width: 10rem !important;
+}
+}
+@media screen and (max-width: 457px){
+    .logo{
+        display: none;
+
+    }
+    .logo2{
+        display: block;
+        width: 43% !important;
+    }
+}
+@media screen and (max-width: 385px){
+    .logo2{
+        width: 85%;
+    }
+}
 .createIcon:hover{
     color: rgb(48,112,166);
 }
@@ -67,4 +94,26 @@
     background-color: #202020 !important;
     color: white !important;
     width: 20rem;
+}
+@media screen and (max-width: 490px){
+    .notSignedInAvatar{
+        display: none !important;
+    }
+
+}
+.notSignedInAvatar{
+   
+        vertical-align: middle;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        
+        cursor: pointer;
+        transition: 0.3s;
+      
+      
+}
+.notSignedInAvatar:hover{
+    transform: scale(1.05);
+        filter: grayscale(0.4);
 }

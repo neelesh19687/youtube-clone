@@ -53,7 +53,7 @@ function App() {
 
           {/* Search Result Page */}
 
-          <Route path='/searchRes'>
+          <Route path='/searchRes/:searchQuery'>
             <div className="sidemenu_channel">
               <SideMenu />
             </div>
@@ -75,6 +75,9 @@ function App() {
             <div className="other">
               <div className="desccomm">
                 <Description userId={userId} />
+                <div className="recommendedforSmallScreen">
+                  <Recommendation/>
+                </div>
                 <strong> <h4>Comments</h4></strong>
                 <Comments className="avatar2"  />
 
@@ -197,7 +200,7 @@ function App() {
 
           {/*Explore Page */}
           <Route path="/explorefeed" >
-          <div className="sidemenu">
+          <div className="sidemenuExplore">
                 <SideMenu />
           
           </div>

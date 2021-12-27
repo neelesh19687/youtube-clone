@@ -1,25 +1,25 @@
 import React from 'react';
 import './ComponentCss/channelVidCard.css';
-import thumbnail from '../images/testthumbnail.jpg';
+import test from '../images/testthumbnail.jpg';
 import { Link } from 'react-router-dom';
 
-export const ChannelVidCard = () => {
+export const ChannelVidCard = ({thumbnail,videoId,title,views,description}) => {
     return (
         <div>
-            <div class="cardmb-3 channelVidcard" style={{maxWidth: '500px'}}>
-            <div class="row g-0">
-              <div class="col-md-4">
-                  <Link to="/video">
-                <img src={thumbnail} class="img-fluid rounded-start" alt="..."/>
+            <div className="cardmb-3 channelVidcard" style={{maxWidth: '500px'}}>
+            <div className="row g-0">
+              <div className="col-md-4  ">
+                  <Link  to={`/video/${videoId}`}>
+                <img src={thumbnail?thumbnail:test}  className=" channelPageVidThumnail img-fluid rounded-start" alt="..."/>
                   </Link>
               </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                <Link to="/video">
-                    <h5 class="card-title channelVidCarTitle">Video 7</h5>
+              <div className="col-md-8">
+                <div className="card-body">
+                <Link to={`/video/${videoId}`}>
+                    <h5 className="card-title channelVidCarTitle">{title}</h5>
                 </Link>    
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                  <p class="card-text"><small class="text-muted">400m views <strong>.</strong> 3 mins ago</small></p>
+                  <p className="card-text">{description}</p>
+                  <p className="card-text"><small className="text-muted">{views} views <strong>.</strong> 3 mins ago</small></p>
                 </div>
               </div>
             </div>

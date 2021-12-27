@@ -23,3 +23,9 @@
 .sidemenu-butt:hover{
     box-shadow: 1px 1px 1px 1px rgb(178, 211, 178) !important;
 }
+@media screen and (max-width: 605px){
+    .sidemenuText{
+        display: none;
+    }
+
+}

@@ -2,6 +2,58 @@
   display: flex;
   flex-direction: row;
 }
+.recommendedforSmallScreen{
+  display: none;
+}
+@media screen and (max-width: 858px){
+  .recommendedforSmallScreen{
+    display: flex;
+    flex-direction: column;
+  }
+  .desccomm{
+    flex: 1 !important;
+  }
+  .recommended{
+    display: none;
+    flex: 0;
+  }
+
+}
+.sidemenuExplore{
+  flex: 0.2;
+  position: sticky;
+  margin-top: 3rem;
+
+}
+
+@media screen and (max-width: 768px){
+  .coverVide{
+    margin-right: 1.5rem;
+  }
+
+
+
+}
+@media screen and (max-width: 485px){
+  .sidemenu_channel{
+    display: none;
+  }
+  .sidemenuExplore{
+    display: none;
+  }
+  .channelpage{
+    width: 100vw;
+    flex: 1 !important;
+  }
+  .navigation_Channel{
+    justify-content: space-between;
+  }
+  .searchPage{
+    flex: 1;
+    margin-left: 0rem !important;
+  }
+}
+
 .sidemenu{
   width: 20vw;
  position: sticky;

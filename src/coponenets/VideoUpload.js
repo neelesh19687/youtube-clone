@@ -98,12 +98,17 @@ export const VideoUpload = () => {
             dislikes: 0,
             comments: 0,
             views: 0,
+            timestamp: new Date()
 
         })
 
         await setDoc(doc(db, `channels/${channelId}/videos`, ID), {
             title: title,
-            videoID: ID
+            videoID: ID,
+            channelId: channelId,
+            thumbnailUrl: thumbnailUrl,
+            description: description,
+            views:0
 
         })
     }
@@ -184,7 +189,7 @@ export const VideoUpload = () => {
                     </div>
                     <div className="imgassurance">
                         <img src={imageassurance} alt="" />
-                        <strong style={{ marginLeft: '2.3rem', font: 'message-box' }}>Create With Youtube</strong>
+                        <strong className='createWithYoutube'>Create With Youtube</strong>
                     </div>
 
                 </div>

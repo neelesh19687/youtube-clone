@@ -27,7 +27,7 @@ export const Recommendation = () => {
     },[])
 
     return (
-        <div>
+        <>
             <h4>Recommended</h4>
             <hr />
             {
@@ -38,7 +38,8 @@ export const Recommendation = () => {
                     </>)
                 })
             }
-          
-        </div>
+          <hr/>
+            </>
+      
     )
 }

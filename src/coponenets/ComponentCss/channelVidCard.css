@@ -5,6 +5,7 @@
 .channelVidcard{
     margin-bottom: 0rem;
     margin-left: 1rem;
+    margin-right: 1rem;
 }
 .card-body{
     padding: 0rem 1rem;
@@ -17,5 +18,18 @@
 .channelVidCarTitle:hover{
     color: white !important;
     text-decoration: underline !important;
+
+}
+.channelPageVidThumnail{
+    width: 167px;
+    height: 112px;
+    object-fit: fill;
+}
+
+@media screen and (max-width: 768px){
+    .channelPageVidThumnail{
+        width: 330px;
+        height: 185px;
+    }   
 
 }

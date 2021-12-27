@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react'
 import brandImg from '../images/account.svg'
 import logo from '../images/logoyt.png'
 import './ComponentCss/SignUp.css';
-import { db,auth,storage } from '../Firebase';
-import{collection,setDoc,addDoc,doc} from 'firebase/firestore'
 import { createUserWithEmailAndPassword,onAuthStateChanged,signOut } from 'firebase/auth';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
+import { db,auth,storage } from '../Firebase';
+import{collection,setDoc,addDoc,doc} from 'firebase/firestore'
 import { ref, uploadBytesResumable,getDownloadURL } from '@firebase/storage';
 export const SignUp = () => {
     const[userPicUrl,SetuserPicUrl]=useState('');
@@ -47,6 +47,11 @@ const uploadProfilePic=async(e)=>{
     )})
 }
     const uploadDataTodb= async (uid)=>{
+        let currentDate = new Date();
+        let cDay = currentDate.getDate();
+        let cMonth = currentDate.getMonth() + 1;
+        let cYear = currentDate.getFullYear();
+        let timestamp = cDay + "/" + cMonth + "/" + cYear;
         if(uid!=null){
 
             await setDoc(doc(db, "channels", uid), {
@@ -55,7 +60,10 @@ const uploadProfilePic=async(e)=>{
                 profilePic:userPicUrl,
                 subscriberCount:0,
                 channelId:uid,
-                userEmail:regEmail
+                userEmail:regEmail,
+                description:'',
+                bannerPic:'',
+                timestamp:timestamp
                 
               });
         }

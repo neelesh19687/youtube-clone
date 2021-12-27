@@ -50,14 +50,24 @@ export const Comments = ({image}) => {
        }
 
 
-   },[userId])
+   },[userId,videoId])
 
 
 const FakeingComment=()=>{
     const fakecomment = comment
     if(commmented){
+        let time = new Date();
         return(<>
-        <PublicComments image={user.profilePic} username={user.channelName} comment={fakecomment} />
+        
+        <div className="publicComment">
+            <Avatar2 image ={user.profilePic} username={user.channelName}/>
+            <div className="pubcom-main">
+                {user.channelName} <strong>.</strong> {time.getMinutes()} min ago 
+                <p className="thePublicComment">
+                    <small>{`${fakecomment}`}</small>
+                </p>
+            </div>
+        </div>
         </>)
     }
     else{
@@ -68,7 +78,7 @@ const FakeingComment=()=>{
 }
 
  const addComment=async ()=>{
-     Setcommented('')
+     Setcommented(true)
      if (signedIn) {
          if(comment!==''){
 
@@ -138,7 +148,7 @@ const FakeingComment=()=>{
             <form className="CommentForm"   >
                 <input placeholder="Add a public comment ....." type="text" value={comment} onChange={(e)=>{SetComment(e.target.value)}} />
             </form>
-                <button onClick={(e)=>{e.preventDefault(); addComment();Setcommented(true)}} className="postComment btn-primary" > Add Comment</button>
+                <button onClick={(e)=>{e.preventDefault(); addComment();Setcommented(true)}} className="postComment btn-primary" >Post</button>
         </div>
         <br />
 

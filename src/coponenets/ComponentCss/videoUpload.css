@@ -69,6 +69,10 @@ border-radius: 14px;
 .description-video-upload:focus{
     outline: none;
 }
+.createWithYoutube{
+  margin-left: 2.3rem;
+  font: message-box;
+}
 .custom-thumbnail-input {
     color: white;
     margin-left: 1.5%;
@@ -134,4 +138,40 @@ border-radius: 14px;
     }
     .custom-videoUpload-input:active::before {
       background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); 
+    }
+
+    @media screen and (max-width: 841px){
+      .VideoUploadDetailsEntry{
+        padding-left: 2rem;
+      }
+      .imgassurance{
+        padding-right: 2rem;
+      }
+
+    }
+    @media screen and (max-width: 673px){
+      .formandDetails{
+        flex-direction: column;
+      }
+      .VideoUploadDetailsEntry{
+        border-right: none ;
+        border-bottom: solid 1px;
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 2rem;
+        margin-right: 0rem;
+      }
+
+    }
+    @media screen and (max-width: 425px){
+        .VideoUploadDetailsEntry{
+          padding: 1rem;
+        }
+        .imgassurance{
+          display: flex;
+          flex-direction: column;
+        }
+        .createWithYoutube{
+          margin-left: 6.2rem;
+        }
     }

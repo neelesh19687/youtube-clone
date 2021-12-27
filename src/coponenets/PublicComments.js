@@ -5,6 +5,7 @@ import "./ComponentCss/publicComments.css"
 export const PublicComments = ({image,username,comment}) => {
    // let comment="hue hue hue mast video op domst kya haal badhiya sab";
     let time = new Date();
+    const fakecomment = comment
 
     return (
         <div className="publicComment">
@@ -12,7 +13,7 @@ export const PublicComments = ({image,username,comment}) => {
             <div className="pubcom-main">
                 {username} <strong>.</strong> {time.getMinutes()} min ago 
                 <p className="thePublicComment">
-                    <small>{comment}</small>
+                    <small>{fakecomment}</small>
                 </p>
             </div>
         </div>

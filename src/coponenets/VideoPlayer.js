@@ -12,29 +12,32 @@ import {db} from '../Firebase';
 export const VideoPlayer = () => {
     let progress=0;
     const player = useRef(null);
-    const vidRef = useRef(null);
+    const vidRef = useRef(null); 
     const input =useRef(null);
     const {videoId}:{videoId:string} =useParams();
     const videoRef = doc(db,'videos',videoId);
     const [videoData,SetVideoData]=useState({});
+    const[currenttime,SetCurrentTime]=useState(0.0);
+    const[durationtime,SetDuration]=useState(0.0);
     const[views,SetViews]=useState(0)
+  
     useEffect(()=>{
         const getVideos= async()=>{
-         const tempvid= await getDoc(videoRef).then((vid)=>{updateDoc(doc(db,'videos',videoId),{views:vid.data().views+1});
-        SetVideoData(vid.data())});
+         const tempvid= await getDoc(videoRef)
+         .then((vid)=>{updateDoc(doc(db,'videos',videoId),{views:vid.data().views+1});updateDoc(doc(db,`channels/${vid.data().channelId}/videos`,videoId),{views:vid.data().views+1});
+       SetVideoData(vid.data())});
         
-         console.log('plpl')
-       //  SetVideoData(tempvid.data());
+ 
           
          }
          
          getVideos()
-        },[])
+        },[videoId])
         
-        console.log(videoData.title)
+     
 
 
-
+       // console.log(videoData.vidUrl)
 
     const [playing, setPlaying] = useState(false);
     const handleplayPause=()=>{
@@ -53,8 +56,11 @@ export const VideoPlayer = () => {
       
         
         vidRef.current.addEventListener('timeupdate', () => {
+            SetCurrentTime(vidRef.current.currentTime);
+            SetDuration(vidRef.current.duration);
             
             progress = ((vidRef.current.currentTime / vidRef.current.duration) * 100);
+
             input.current.value = progress;
             
         })
@@ -81,25 +87,32 @@ export const VideoPlayer = () => {
     
     return (<>
         <div className="videoOpenpage">
+        
 
+        
+            
             <div className="vidContainer" ref={player} onClick={handleplayPause} onDoubleClick={openFullscreen}>
-                <video src={videoData.vidUrl} ref={vidRef} className="video"></video>
+                <video src={videoData.vidUrl}  controlsList='nodownload' ref={vidRef} className="video"></video>
                 <div className="controls">
                     <div className="playPause" id="playPause" onClick={handleplayPause} >
-
                      {
                          (playing)?(
-                            <i class="far fa-2x fa-pause-circle" id="masterplay" ></i>
-                         ):(
-                            <i class="far fa-2x fa-play-circle" id="masterplay" ></i>
-                         )
-                     }
+                             <i class="far fa-2x fa-pause-circle" id="masterplay" ></i>
+                             ):(
+                                 <i class="far fa-2x fa-play-circle" id="masterplay" ></i>
+                                 )
+                                }
+                  
 
 
                     </div>
                     <div className="timebar_container">
-                      
-
+                    <div className="timestampsofvideo">
+                    {
+                        (Math.floor(currenttime/60) +':'+(Math.floor(currenttime%60)<10?('0'+Math.floor(currenttime%60)):Math.floor(currenttime%60))+'/'+(Math.floor(durationtime/60) +':'+(Math.floor(durationtime%60)<10?('0'+Math.floor(durationtime%60)):Math.floor(durationtime%60)))
+                        
+                        )}
+                    </div>  
                         <input type="range" ref={input} className="timebar" min="0" max="100"   />
                         
                     </div>

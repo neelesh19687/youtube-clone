@@ -10,6 +10,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 
 export const Description = ({ userId }) => {
     const [isSubscribed, SetisSubscribed] = useState(false);
+    
     const [subscribe, Setsubscribe] = useState("Subscribe");
     const [bgcolorsubscription, Setbgcolorsubscription] = useState({
         backgroundColor: "#cc0000",
@@ -29,7 +30,7 @@ export const Description = ({ userId }) => {
     const [channelId, SetchannelId] = useState('');
     const [likes, SetLikes] = useState(0);
     const [dislikes, SetDislikes] = useState(0);
-    
+    const[views,SetViews]=useState(0)
     const [isSignedIn, SetIsSignedIn] = useState(false)
   
     const [channelData, SetChannelData] = useState({});
@@ -57,7 +58,10 @@ export const Description = ({ userId }) => {
             await getchannelData(tempvid.data().channelId)
             if (userId) {
 
-                await gettingSubscription(tempvid.data().channelId)
+                await gettingSubscription(tempvid.data().channelId).then(async()=>{
+
+                  
+                })
             }
           
             
@@ -95,8 +99,38 @@ export const Description = ({ userId }) => {
                     SetisSubscribed(false)
                 }
             
-            
+              
             }
+
+            const gettingLiked = async (id) => {
+
+                const LikedRef = doc(db, `channels/${userId}/likedVideos`, id);
+                console.log('hue hue huen hue gettin Liked or not')
+                const likedData = await getDoc(LikedRef)
+                    if (likedData.data()) {
+                        SetisLiked(true)
+                    }
+                    else {
+                        SetisLiked(false)
+                    }
+                
+                
+                }
+
+            const gettingDisLiked = async (id) => {
+
+                    const DislikedRef = doc(db, `channels/${userId}/DislikedVideos`, id);
+                    console.log('hue hue huen hue gettin Liked or not')
+                    const DislikedData = await getDoc(DislikedRef)
+                        if (DislikedData.data()) {
+                            SetisDisliked(true)
+                        }
+                        else {
+                            SetisDisliked(false)
+                        }
+                    
+                    
+                    }
 
         
 
@@ -116,13 +150,32 @@ export const Description = ({ userId }) => {
 
             }
         }
-
-     
-  
-
+       
+        function likeDislikeColor(){
+            if(isLiked){
+                SetLike("Liked");
+                Setlikecolor({ color: "rgb(55,166,241)" })
+            }
+            else if(isDisliked){
+                Setdislike("Disliked");
+                SetDislikecolor({ color: "rgb(55,166,241)" });
+            }
+            else if(!isLiked&&!isDisliked){
+                SetLike("Like ");
+                Setlikecolor({ color: "white" });
+                Setdislike("Dislike ");
+                SetDislikecolor({ color: "white" });
+            }
+        }
+        if(userId){
+            gettingLiked(videoId)//.then(likeDislikeColor);
+            gettingDisLiked(videoId)//.then(likeDislikeColor);
+            likeDislikeColor()
+        }
+        
         subcolor();
         getVideos()//.then(()=>{getchannelData(channelId)})
-    }, [userId,isSubscribed]);
+    }, [userId,isSubscribed,videoId]);
 
 
 
@@ -133,8 +186,10 @@ export const Description = ({ userId }) => {
     console.log(likes, 'likes', dislikes, "dislikes");
     //console.log(channelData.channelName);
     console.log(subscriberCount, " subscribers")
+     //Handeling color of liked and Disliked button 
+     
 
-
+   
 
 
 
@@ -200,7 +255,8 @@ export const Description = ({ userId }) => {
                 SetLikes(likes - 1);
                 SetLike("Like ");
                 Setlikecolor({ color: "white" })
-                await updateDoc(doc(db, 'videos', videoId), { likes: likes - 1 })
+                await updateDoc(doc(db, 'videos', videoId), { likes: likes - 1 });
+                await deleteDoc((doc(db,`channels/${userId}/likedVideos`,videoId)))
 
 
             }
@@ -216,6 +272,13 @@ export const Description = ({ userId }) => {
                 Setlikecolor({ color: "rgb(55,166,241)" })
                 await updateDoc(doc(db, 'videos', videoId), { likes: likes + 1 })
                 await updateDoc(doc(db, 'videos', videoId), { dislikes: dislikes - 1 })
+                await setDoc(doc(db,`channels/${userId}/likedVideos`,videoId),{
+                    thumbnailUrl:videoData.thumbnailUrl,
+                    title:videoData.title,
+                    channelId:videoData.channelId,
+                    videoId:videoId
+                })
+                await deleteDoc((doc(db,`channels/${userId}/DislikedVideos`,videoId)))
 
             }
             else {
@@ -224,7 +287,13 @@ export const Description = ({ userId }) => {
                 console.log("Liked")
                 SetLike("Liked");
                 Setlikecolor({ color: "rgb(55,166,241)" })
-                await updateDoc(doc(db, 'videos', videoId), { likes: likes + 1 })
+                await updateDoc(doc(db, 'videos', videoId), { likes: likes + 1 });
+                await setDoc(doc(db,`channels/${userId}/likedVideos`,videoId),{
+                    thumbnailUrl:videoData.thumbnailUrl,
+                    title:videoData.title,
+                    channelId:videoData.channelId,
+                    videoId:videoId
+                })
             }
         }
         else {
@@ -242,6 +311,7 @@ export const Description = ({ userId }) => {
                 console.log("Remove Dislike")
                 Setdislike("Dislike ");
                 SetDislikecolor({ color: "white" });
+                await deleteDoc((doc(db,`channels/${userId}/DislikedVideos`,videoId)))
 
             }
             else if (isLiked) {
@@ -256,6 +326,13 @@ export const Description = ({ userId }) => {
                 SetDislikecolor({ color: "rgb(55,166,241)" });
                 await updateDoc(doc(db, 'videos', videoId), { likes: likes - 1 })
                 await updateDoc(doc(db, 'videos', videoId), { dislikes: dislikes + 1 })
+                await deleteDoc((doc(db,`channels/${userId}/likedVideos`,videoId)));
+                await setDoc(doc(db,`channels/${userId}/DislikedVideos`,videoId),{
+                    thumbnailUrl:videoData.thumbnailUrl,
+                    title:videoData.title,
+                    channelId:videoData.channelId,
+                    videoId:videoId
+                })
 
 
             }
@@ -265,6 +342,12 @@ export const Description = ({ userId }) => {
                 console.log("Disliked")
                 Setdislike("Disliked");
                 SetDislikecolor({ color: "rgb(55,166,241)" });
+                await setDoc(doc(db,`channels/${userId}/DislikedVideos`,videoId),{
+                    thumbnailUrl:videoData.thumbnailUrl,
+                    title:videoData.title,
+                    channelId:videoData.channelId,
+                    videoId:videoId
+                })
             }
         }
         else {
@@ -286,8 +369,8 @@ export const Description = ({ userId }) => {
                     </p>
                     <div className="response">
 
-                        <i onClick={funcLike} style={likecolor} class="fas fa-1x fa-thumbs-up like"><small color='white'> {likes + " " + like} { } </small></i>
-                        <i onClick={funcDislike} style={dislikecolor} class="fas fa-1x fa-thumbs-down like"><small color='white'>{dislikes + " " + dislike}</small></i>
+                        <i onClick={funcLike} style={isLiked?{color:"rgb(55,166,241)"}:{color:'white'}} class="fas fa-1x fa-thumbs-up like"><small color='white'> {isLiked?likes+' Liked':+likes+' Like'}  </small></i>
+                        <i onClick={funcDislike} style={isDisliked?{color:"rgb(55,166,241)"}:{color:'white'}} class="fas fa-1x fa-thumbs-down like"><small color='white'>{isDisliked?dislikes+' Disliked':+dislikes+' Dislike'}</small></i>
                     </div>
                 </div>
                 <hr />
