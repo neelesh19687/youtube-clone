@@ -58,6 +58,9 @@ const RedirectToyt=()=>{
                             <input onChange={(e) => SetRegPass(e.target.value)} className='inputSignUpdetailForm' placeholder="Enter Password" type="password" />
                            
                             <button onClick={(e) => { handleSignIn(e) }} className="btn-primary inputSignUpdetailFormBtnSubmit" >SignIn</button>
+                        <Link to='/'>
+                        <RedirectToyt/>
+                        </Link>
                         </form>
 
                         {/**  */}
@@ -67,9 +70,6 @@ const RedirectToyt=()=>{
 
                         <img src={brandImg} alt="" />
                         <h6 style={{ marginLeft: '4rem' }}>Your Data Is Sequere With Us</h6>
-                        <Link to='/'>
-                        <RedirectToyt/>
-                        </Link>
 
                     </div>
                 </div>

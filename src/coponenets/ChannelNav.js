@@ -66,7 +66,10 @@ export const ChannelNav = ({ username }) => {
         if(userId!==''){
             gettingSubscription(channelId)
         }
-         getchannelData();
+        if(channelData.channelName==undefined){
+            console.log('hopefully ek hi baar chale')
+            getchannelData();
+        }
          
          
          {/*handling color of subscribe button */ }
@@ -92,7 +95,7 @@ export const ChannelNav = ({ username }) => {
 
 
 
-
+console.log(isSubscribed);
 
 
 

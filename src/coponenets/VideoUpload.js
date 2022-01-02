@@ -6,12 +6,22 @@ import './ComponentCss/videoUpload.css';
 import { getDownloadURL, ref, uploadBytes, uploadBytesResumable } from '@firebase/storage';
 import { setDoc, addDoc, collection, doc } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
+import { serverTimestamp } from '@firebase/firestore';
 export const VideoUpload = () => {
 
     const { channelId }: { channelId: string } = useParams();
     // console.log(channelId);
-
+    const dateRef = new Date()
+    const date = {
+        minutes: dateRef.getMinutes()>9?dateRef.getMinutes():'0'+dateRef.getMinutes(),
+        hours: dateRef.getHours()>9?dateRef.getHours():'0'+dateRef.getHours(),
+        date: dateRef.getDate(),
+        months: dateRef.getMonth()+1,
+        year: dateRef.getFullYear()
+    }
+    const createdAtString = 'Created At ' + date.date + '/' + date.months + '/' + date.year + "  " + date.hours + ":" + date.minutes;
     //upload Related 
+
 
     const [title, SetTitle] = useState('');
     const [progress, SetProgress] = useState(0);
@@ -98,7 +108,9 @@ export const VideoUpload = () => {
             dislikes: 0,
             comments: 0,
             views: 0,
-            timestamp: new Date()
+            timestamp: serverTimestamp(),
+            createdAt: createdAtString
+
 
         })
 
@@ -108,7 +120,11 @@ export const VideoUpload = () => {
             channelId: channelId,
             thumbnailUrl: thumbnailUrl,
             description: description,
-            views:0
+            views: 0,
+            vidUrl: videoUrl,
+            timestamp: serverTimestamp(),
+            createdAt: createdAtString
+
 
         })
     }
@@ -140,7 +156,7 @@ export const VideoUpload = () => {
             </>)
 
         }
-        else if(progress<101&&progress>99){
+        else if (progress < 101 && progress > 99) {
             return (<>
                 <div className="d-flex align-items-center">
                     <strong>Processing...</strong>

@@ -33,13 +33,18 @@ console.log(trendingVideo);
 
             <hr style={{width:'75vw'}} />
             <div className="allExploreVideos" >
-
-            {trendingVideo.map((video)=>{
-                return(<>
-                
-                <ExploreVidCard views={video.views} description={video.description} channelId={video.channelId} thumbnail={video.thumbnailUrl} title={video.title} id={video.uid}/>
-                </>)
-            })}
+                {
+                    trendingVideo.length>0?(trendingVideo.map((video)=>{
+                        return(<>
+                        
+                        <ExploreVidCard createdAt={video.createdAt} views={video.views} description={video.description} channelId={video.channelId} thumbnail={video.thumbnailUrl} title={video.title} id={video.uid}/>
+                        </>)
+                    })):(<div className="d-flex align-items-center">
+                    <strong>Loading...</strong>
+                    <div className="spinner ms-auto" role="status" aria-hidden="true"></div>
+                  </div>)
+                }
+        
             </div>
 
         </div>

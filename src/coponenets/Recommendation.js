@@ -32,8 +32,11 @@ export const Recommendation = () => {
             <hr />
             {
                 recommendedVideos.map((video)=>{
+                    if(video.uid==videoId){
+                        return(<></>)
+                    }
                     return(<>
-                    <Hrcard img={video.thumbnailUrl?video.thumbnailUrl:img} views={video.views} Id={video.uid} title={video.title} channelName={video.channelName} channelId={video.channelId} />
+                    <Hrcard createdAt={video.createdAt} img={video.thumbnailUrl?video.thumbnailUrl:img} views={video.views} Id={video.uid} title={video.title} channelName={video.channelName} channelId={video.channelId} />
                     
                     </>)
                 })

@@ -25,27 +25,11 @@ export const ChannelPageVid = () => {
             <h5>New Upload</h5>
             {channelVideos.map((video)=>{
                 return(<>
-                <ChannelVidCard description={video.description} thumbnail={video.thumbnailUrl} videoId = {video.xid} title={video.title} views ={video.views} />
+                <ChannelVidCard createdAt={video.createdAt} description={video.description} thumbnail={video.thumbnailUrl} videoId = {video.xid} title={video.title} views ={video.views} />
                 
                 </>)
             })}
-            <ChannelVidCard/>
-            <ChannelVidCard/>
-            <ChannelVidCard/>
-            <ChannelVidCard/>
-            <ChannelVidCard/>
-            <ChannelVidCard/>
-            <ChannelVidCard/>
-            <ChannelVidCard/>
-            <ChannelVidCard/>
-            <ChannelVidCard/>
-            <ChannelVidCard/>
-            <ChannelVidCard/>
-            <ChannelVidCard/>
-            <ChannelVidCard/>
-            <ChannelVidCard/>
-            <ChannelVidCard/>
-            <ChannelVidCard/>
+           
             
         </div>
     )

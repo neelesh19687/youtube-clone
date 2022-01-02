@@ -54,7 +54,7 @@ export const ChannelCoverVideo = ({vid}) => {
                     <h5 className="card-ChannelCoverVideo-title">{video.title}</h5> 
                   </Link>
                   <p className="card-text">{video.views?video.views+' views':'1m Views'}</p>
-                  <p className="card-text"><small className="text-muted">Uploaded 3 mins ago</small></p>
+                  <p className="card-text"><small className="text-muted">{video.createdAt}</small></p>
                 </div>
               </div>
             </div>

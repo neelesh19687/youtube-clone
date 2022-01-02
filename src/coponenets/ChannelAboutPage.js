@@ -89,11 +89,11 @@ export const ChannelAboutPage = () => {
                 <div className="part2">
                     <h6 className="st">Stats</h6>
                     <hr />
-                    <small>Joined 1 Dec 2003</small>
+                    <small>Joined At <strong>{channelData.timestamp}</strong></small>
                     <hr />
                     <small>43434 views</small>
                     <hr />
-                    <small><i class="far fa-flag" /></small>
+                    <small><i class="far fa-flag" onClick={()=>{alert('reported')}} /></small>
                 </div>
             </div>
 

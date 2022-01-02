@@ -16,6 +16,17 @@ export const Comments = ({image}) => {
     const [comments,SetComments]=useState([]);
     const [user,SetUser]=useState({});
     const [commmented,Setcommented]=useState(false);
+    const dateRef = new Date()
+    const date = {
+        minutes: dateRef.getMinutes()>9?dateRef.getMinutes():'0'+dateRef.getMinutes(),
+        hours: dateRef.getHours()>9?dateRef.getHours():'0'+dateRef.getHours(),
+        date: dateRef.getDate(),
+        months: dateRef.getMonth()+1,
+        year: dateRef.getFullYear()
+    }
+    const createdAtString = 'Commented At ' + date.date + '/' + date.months + '/' + date.year + "  " + date.hours + ":" + date.minutes;
+    //upload Related 
+
     onAuthStateChanged(auth,(user)=>{
         if(user){
             console.log('op')
@@ -62,7 +73,7 @@ const FakeingComment=()=>{
         <div className="publicComment">
             <Avatar2 image ={user.profilePic} username={user.channelName}/>
             <div className="pubcom-main">
-                {user.channelName} <strong>.</strong> {time.getMinutes()} min ago 
+                {user.channelName} <strong>.</strong> {createdAtString}  
                 <p className="thePublicComment">
                     <small>{`${fakecomment}`}</small>
                 </p>
@@ -86,8 +97,8 @@ const FakeingComment=()=>{
                  comment:comment,
                  userCommentedId:userId,
                  userPic:user.profilePic,
-                 userName:user.channelName
-                 
+                 userName:user.channelName,
+                 timestamp:createdAtString 
                 }).then(()=>{alert("comment added JI");})
             }
             else{
@@ -160,7 +171,7 @@ const FakeingComment=()=>{
             comments.map((eachcomment)=>{
                 
 
-                   return (<PublicComments image ={eachcomment.userPic?eachcomment.userPic:defaultProfile} username = {eachcomment.userName?eachcomment.userName:'noName'} comment={eachcomment.comment}/> 
+                   return (<PublicComments createdAtString={eachcomment.timestamp!= undefined?eachcomment.timestamp:'0 min'} image ={eachcomment.userPic?eachcomment.userPic:defaultProfile} username = {eachcomment.userName?eachcomment.userName:'noName'} comment={eachcomment.comment}/> 
                 )
             })
         }

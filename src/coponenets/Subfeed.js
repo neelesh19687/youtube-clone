@@ -54,12 +54,14 @@ if(user){
 
 },[user,subscriptions.length])
  console.log(subVideo)
-
+   
 
     return (
         <div>
+
             <h2>{feed}</h2>
             <hr />
+            
             <div className="subscribedChannels">
                 {subscriptions.map((eachsubscription)=>{
                     return(<>
@@ -73,15 +75,30 @@ if(user){
                 })}
             </div>
             <hr />
+
             <div className="mainPage">
-                {
+              {
+                 !( subscriptions.length>0)?  (<div className="subscribed">
+                
+                    <strong>
+                        NO SUBSCRIPTION YET
+                    </strong>
+                </div>): ( 
                     subVideo.map((eachVideo)=>{
                       
                         return(<>
                         <VideoCard thumbnail={eachVideo.thumbnailUrl} views ={eachVideo.views}channelId={eachVideo.channelId} id={eachVideo.id} title={eachVideo.title}/>
                         </>)
-                    })}
+                    })
+                )
+              }
+
+          
                 
+                
+             
+               
+              
             </div>
 
         </div>

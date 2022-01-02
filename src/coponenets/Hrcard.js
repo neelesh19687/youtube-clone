@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { db } from '../Firebase'
 import './ComponentCss/hrCard.css'
 
-export const Hrcard = ({img,Id,title,views}) => {
+export const Hrcard = ({createAt,img,Id,title,views}) => {
     
     return (
        <>
@@ -21,7 +21,7 @@ export const Hrcard = ({img,Id,title,views}) => {
                             <h5 class="card-title">{title}</h5>
                             </Link>
                         
-                            <p class="card-text"><small class="text-muted">{views} views <strong>.</strong> 2min ago</small></p>
+                            <p class="card-text"><small class="text-muted">{views} views <strong>.</strong> {createAt}</small></p>
                         </div>
                     </div>
                 

@@ -15,10 +15,11 @@ margin-right: 3rem;
 }
 .continueToYtSingIn{
     box-shadow: none;
-    margin-left: 5.5rem;
+    margin-left: 0.7rem;
     display: flex;
     padding: 2%;
     border-radius: 13px;
+    margin-top: 1rem;
 }
 
 .custom-file-input {

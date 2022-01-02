@@ -365,7 +365,7 @@ export const Description = ({ userId }) => {
                 </h4>
                 <div className="like-views-count">
                     <p>
-                        {videoData.views} Views <strong>.</strong> Timestamp
+                        {videoData.views} Views <strong>.</strong> {videoData.createdAt}
                     </p>
                     <div className="response">
 
@@ -383,7 +383,7 @@ export const Description = ({ userId }) => {
                             <Link to={`/channelPage/${videoData.channelId}/channelhome`}>
                                 <h6><strong>{channelData.channelName ? channelData.channelName : 'Loading...'}</strong> </h6>
                             </Link>
-                            <p>{subscriberCount}k Subscribers</p>
+                            <p>{subscriberCount>1?subscriberCount+" subscriber":subscriberCount+" subscribers"} </p>
                         </div>
                     </div>
                     <div className="channelrel2">

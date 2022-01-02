@@ -3,6 +3,9 @@
     display: flex;
     justify-content: center;
 }
+.PleaseWait{
+  margin-top: 3rem;
+}
 .brandIamgeAtSignUpForm{
     width: 22rem;
     border-left: solid #808080 1px;
@@ -80,4 +83,21 @@ margin-right: 3rem;
    background-color: #d8d8d8 !important;
     outline: none;
 
+}
+@media  screen and (max-width:768px) {
+  .SingUpFormContainer{
+    flex-direction: column;
+  }
+  .brandIamgeAtSignUpForm{
+    display: none;
+  }
+  .SignForm{
+    padding-left: 2rem;
+  }
+  .continuetoyt{
+    display: block !important;
+  }
+}
+.continuetoyt{
+  display: none;
 }

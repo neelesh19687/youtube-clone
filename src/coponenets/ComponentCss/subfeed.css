@@ -11,6 +11,26 @@
 .subscribedChannels::-webkit-scrollbar{
     display: none;
 }
+@media screen and (max-width: 768px){
+    .subscribed{
+        background-size: contain !important;
+    }
+    
+}
+.subscribed{
+    height: 50vh;
+    margin-top: 7rem;
+    background-image: url('../../images/nosubscriptions.svg');
+    width: 50vw;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+    margin: auto;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: flex-start;
+}
 
 .individualSubscribedChannelCArd{
     width: 63px !important;

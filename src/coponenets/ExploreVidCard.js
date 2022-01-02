@@ -6,7 +6,7 @@ import { db } from '../Firebase';
 import { Avatar3 } from './Avatar3';
 import { doc, getDoc } from 'firebase/firestore';
 import test from "../images/testthumbnail.jpg";
-export const ExploreVidCard = ({ views, title, id, description, thumbnail, channelId }) => {
+export const ExploreVidCard = ({ createdAt,views, title, id, description, thumbnail, channelId }) => {
 
     const [channelData, SetChannelData] = useState({});
     console.log("id:=>", id);
@@ -48,7 +48,7 @@ export const ExploreVidCard = ({ views, title, id, description, thumbnail, chann
                         <p style={{marginBottom:'5px',display:'flex'}} className="viewsAndTimestamp">
                         <Link style={{marginRight:'10px'}} className='channelLinkForSmallScreen'to={`/channelPage/${channelId}/channelhome`}><small  >
                         {channelData.channelName ? channelData.channelName : 'loading....'} </small></Link>
-                            {views+` views`}<bold>{' '+`·`+" "}</bold>{`2 min ago`}</p>
+                            {views+` views`}<bold>{' '+`·`+" "}</bold>{createdAt}</p>
                             <Link to={`/channelPage/${channelId}/channelhome`}>
                     <p className="channelLink" style={{marginBottom:'5px'}}> <small className='channelNameinsideExploreVidCard' style={{display:'flex'}}><Avatar3 username="jnfkan" image={channelData.profilePic ? channelData.profilePic : test}/>{channelData.channelName ? channelData.channelName : 'loading....'}</small></p>
                             </Link>

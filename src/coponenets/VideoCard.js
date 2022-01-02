@@ -6,7 +6,7 @@ import { doc,getDoc,collection  } from '@firebase/firestore';
 import {db} from '../Firebase';
  
 import { Link } from 'react-router-dom';
-export const VideoCard = ({thumbnail,views,channelId,title,id}) => {
+export const VideoCard = ({thumbnail,views,channelId,title,id,createdAt}) => {
     
     let str ='anjnadjnakdnknkjdnjk'
     
@@ -58,7 +58,7 @@ return (
                         <Link to={`/channelPage/${channelId}/channelhome`}>
                      <small className='channelNameinsideVidCard'>{channelData.channelName?channelData.channelName:'loading....'}</small> 
                     </Link>
-                    <p class="card-text"><small className='ViewsAndTimeStampinVidCard'>{views?views:0} views <strong>.</strong> 4 min ago</small></p>
+                    <p class="card-text"><small className='ViewsAndTimeStampinVidCard'>{views?views:0} views <strong>.</strong> {createdAt?createdAt:'0'}</small></p>
                      </p>
                         </div>
                         </h5>

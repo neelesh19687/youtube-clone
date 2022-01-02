@@ -5,14 +5,15 @@ import{getAuth} from 'firebase/auth'
 import {getStorage } from 'firebase/storage'
 
 const Config = {
-  apiKey: "AIzaSyBhf0S022xrtkg3XCMVYNO2sZdVfvUkcuA",
-  authDomain: "ytclone-292ed.firebaseapp.com",
-  databaseURL: "https://ytclone-292ed-default-rtdb.firebaseio.com",
-  projectId: "ytclone-292ed",
-  storageBucket: "ytclone-292ed.appspot.com",
-  messagingSenderId: "906425047540",
-  appId: "1:906425047540:web:aaa2130e30901dda9dc1a1",
-  measurementId: "G-ZCL6MYQW7S"
+  apiKey: "AIzaSyAPx6rsWUyNy7uJMGdRwck_evPgek_lxPE",
+  authDomain: "clonedevlooperproject.firebaseapp.com",
+  projectId: "clonedevlooperproject",
+  databaseURL: 'https://clonedevlooperproject-default-rtdb.firebaseio.com/',
+  storageBucket: "clonedevlooperproject.appspot.com",
+  messagingSenderId: "913088868171",
+  appId: "1:913088868171:web:e7487d2a67114ba04f02ce",
+  measurementId: "G-XYW1E1GGFS"
+
 };
 
 const app = initializeApp(Config);

@@ -3,7 +3,7 @@ import './ComponentCss/channelVidCard.css';
 import test from '../images/testthumbnail.jpg';
 import { Link } from 'react-router-dom';
 
-export const ChannelVidCard = ({thumbnail,videoId,title,views,description}) => {
+export const ChannelVidCard = ({thumbnail,videoId,title,views,description,createdAt}) => {
     return (
         <div>
             <div className="cardmb-3 channelVidcard" style={{maxWidth: '500px'}}>
@@ -18,8 +18,8 @@ export const ChannelVidCard = ({thumbnail,videoId,title,views,description}) => {
                 <Link to={`/video/${videoId}`}>
                     <h5 className="card-title channelVidCarTitle">{title}</h5>
                 </Link>    
-                  <p className="card-text">{description}</p>
-                  <p className="card-text"><small className="text-muted">{views} views <strong>.</strong> 3 mins ago</small></p>
+                  <p className="card-text">{description?((description.length > 57) ? (description.substring(0, 54) + '....') : description):''}</p>
+                  <p className="card-text"><small className="text-muted">{views} views <strong>.</strong>{createdAt}</small></p>
                 </div>
               </div>
             </div>
